@@ -1,0 +1,17 @@
+name: form_models
+description: Dart package for login/signup validation
+version: 1.0.0
+
+environment:
+  sdk: ">=2.12.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  equatable: ^2.0.0
+  formz: ^0.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^4.0.0

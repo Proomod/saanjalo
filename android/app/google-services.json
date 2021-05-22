@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "380695103994",
+    "project_id": "messengerclone-81623",
+    "storage_bucket": "messengerclone-81623.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380695103994:android:4a85757cc00ac7620b3c43",
+        "android_client_info": {
+          "package_name": "com.example.saanjalo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380695103994-0sleql0b4iavqq8ijv7ocifuaaatbmps.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.saanjalo",
+            "certificate_hash": "50060f8d6c4de8efa3bc2c9476be5d05975884cc"
+          }
+        },
+        {
+          "client_id": "380695103994-au5599o8h1koovlb5siv47tb5rvgcbur.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.saanjalo",
+            "certificate_hash": "f908a6c42fc5c4a4de297eaa78c14a223d550406"
+          }
+        },
+        {
+          "client_id": "380695103994-qvqaljfi9v1ksno66psrvalnmhuoirl4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfP4ttEOkA-sQKwI4zSydHHdEadrlAbTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380695103994-qvqaljfi9v1ksno66psrvalnmhuoirl4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
