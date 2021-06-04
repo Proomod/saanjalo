@@ -4,7 +4,7 @@ import 'package:saanjalo/constants.dart';
 class TextColumn extends StatelessWidget {
   final String? title;
   final String? text;
-  TextColumn({this.title, this.text}) : assert(title != null && text != null);
+  const TextColumn({this.title, this.text}) : assert(title != null && text != null);
 
   @override
   Widget build(BuildContext context) {

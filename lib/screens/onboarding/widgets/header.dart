@@ -5,7 +5,7 @@ import 'package:saanjalo/widgets/logo.dart';
 class Header extends StatelessWidget {
   final VoidCallback onSkip;
 
-  Header({required this.onSkip}) : assert(onSkip != null);
+  const Header({required this.onSkip}) : assert(onSkip != null);
   @override
   Widget build(BuildContext context) {
     return Row(

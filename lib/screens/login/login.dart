@@ -10,6 +10,7 @@ import 'package:saanjalo/screens/login/widgets/loginForm.dart';
 // import 'package:saanjalo/widgets/logo.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
   static route(double screenHeight) {
     return MaterialPageRoute(
       builder: (context) => Login(),
@@ -36,7 +37,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
       vsync: this,
       duration: kLoginAnimationDuration,
     );
-    var fadeSlideBetween = Tween<double>(begin: 0.0, end: 1.0);
+    final fadeSlideBetween = Tween<double>(begin: 0.0, end: 1.0);
     _headerTextAnimation = fadeSlideBetween.animate(CurvedAnimation(
         parent: _animationController,
         curve: Interval(
@@ -55,7 +56,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
         ),
       ),
     );
-    var clipperOffestTween = Tween<double>(
+    final clipperOffestTween = Tween<double>(
       begin: screenHeight,
       end: 0.0,
     );
@@ -72,6 +73,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     _greyTopAnimation = clipperOffestTween.animate(
       CurvedAnimation(
         parent: _animationController,
+        // ignore: prefer_const_constructors
         curve: Interval(
           0.35,
           0.7,
@@ -90,6 +92,13 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
       ),
     );
     _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -166,7 +175,7 @@ class BlueTopClipper extends CustomClipper<Path> {
   BlueTopClipper({this.yOffset});
   @override
   Path getClip(Size size) {
-    var path = Path()
+    final path = Path()
       ..lineTo(0, 220 + yOffset!)
       ..quadraticBezierTo(
           size.width / 2.2, 270 + yOffset!, size.width, 170 + yOffset!)
@@ -187,7 +196,7 @@ class GreyTopClipper extends CustomClipper<Path> {
   GreyTopClipper({this.yOffset});
   @override
   Path getClip(Size size) {
-    var path = Path()
+    final path = Path()
       ..lineTo(0, 265 + yOffset!)
       ..quadraticBezierTo(
           size.width / 2 + 20, 290 + yOffset!, size.width, 185 + yOffset!)
@@ -208,7 +217,7 @@ class WhiteTopClipper extends CustomClipper<Path> {
   WhiteTopClipper({this.yOffset});
   @override
   Path getClip(Size size) {
-    var path = Path()
+    final path = Path()
       ..lineTo(0, 310 + yOffset!)
       ..quadraticBezierTo(
           size.width / 2, 310.0 + yOffset!, size.width, 200.0 + yOffset!)

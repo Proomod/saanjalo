@@ -6,7 +6,7 @@ class OnBoardingPageIndicator extends StatelessWidget {
   final int currentPage;
   final double? angle;
   final Widget? child;
-  OnBoardingPageIndicator(
+  const OnBoardingPageIndicator(
       {required this.currentPage, required this.child, this.angle});
 
   Color _getPageIndicatorColor(int pageIndex) {
@@ -55,8 +55,8 @@ class _OnBoardingPageIndicatorPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_OnBoardingPageIndicatorPainter oldDelegate) {
-    return this.color != oldDelegate.color ||
-        this.startAngle != oldDelegate.startAngle;
+    return color != oldDelegate.color ||
+        startAngle != oldDelegate.startAngle;
   }
 
   @override

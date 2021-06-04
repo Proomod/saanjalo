@@ -4,7 +4,7 @@ import 'dart:math';
 class Logo extends StatelessWidget {
   final Color? color;
   final double? size;
-  Logo({this.color, this.size}) : assert(color != null && size != null);
+  const Logo({this.color, this.size}) : assert(color != null && size != null);
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(

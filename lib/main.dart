@@ -8,7 +8,7 @@ import 'package:saanjalo/AuthBloc/authenticationbloc_bloc.dart';
 import 'package:saanjalo/screens/SplashPage/SplashPage.dart';
 import 'package:saanjalo/screens/homepage/homepage.dart';
 import 'package:saanjalo/screens/login/login.dart';
-
+import 'package:chat_repository/chat_repository.dart';
 import 'package:saanjalo/screens/onboarding/onboarding.dart';
 import 'package:saanjalo/simple_bloc_observer.dart';
 
@@ -22,10 +22,14 @@ const List<Color> orangeGradients = [
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
+
   Bloc.observer = SimpleBlocObserver();
+
   final AuthenticationRepository authenticationRepository =
       AuthenticationRepository();
+
   runApp(
     App(
       authenticationRepository: authenticationRepository,
@@ -40,7 +44,8 @@ class App extends StatelessWidget {
   final AuthenticationRepository authenticationRepository;
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<dynamic>.value(
+    // ignore: always_specify_types
+    return RepositoryProvider.value(
       value: authenticationRepository,
       // ignore: always_specify_types
       child: BlocProvider(
@@ -108,7 +113,7 @@ class _AppDataState extends State<AppData> {
 
               default:
                 return [
-                  MaterialPage(child: OnBoarding()),
+                  // MaterialPage(child: OnBoarding()),
                   MaterialPage(child: Login())
                 ];
             }

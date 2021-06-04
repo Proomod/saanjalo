@@ -6,7 +6,7 @@ import 'package:saanjalo/widgets/logo.dart';
 class Header extends StatelessWidget {
   final Animation<double>? animation;
 
-  Header({this.animation});
+  const Header({this.animation});
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -1,9 +1,10 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fireAuth;
 import 'package:google_sign_in/google_sign_in.dart';
+
 import 'cache/cache.dart';
-import 'package:meta/meta.dart';
 import 'models/models.dart';
 
 class SignUpFailure implements Exception {}
@@ -27,17 +28,20 @@ class AuthenticationRepository {
   final GoogleSignIn _googleSignIn;
   final CacheClient _cache;
 
-  static const userCacheKey = "__userKey__";
+  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
+
+  static const userCacheKey = '__userKey__';
 
   Stream<User> get user {
-    return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      final user = firebaseUser == null
+    return _firebaseAuth.authStateChanges().map((fireAuth.User? firebaseUser) {
+      final User user = firebaseUser == null
           ? User.empty
           : User(
               id: firebaseUser.uid,
               email: firebaseUser.email,
               username: firebaseUser.displayName,
-              name: firebaseUser.displayName);
+              name: firebaseUser.displayName,
+              displayPicture: firebaseUser.photoURL);
 
       _cache.write<User>(key: userCacheKey, value: user);
 
@@ -47,11 +51,17 @@ class AuthenticationRepository {
 
   User get currentUser => _cache.read<User>(key: userCacheKey) ?? User.empty;
 
-  Future<void> createUserWithEmailPassword(
-      String email, String password) async {
+  Future<void> createUserWithEmailPassword(String email, String password,
+      String username, String displayPicture) async {
     try {
-      fireAuth.UserCredential userCredential = await _firebaseAuth
+      final fireAuth.UserCredential userCredential = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
+      _fireStore.collection('users').doc(_firebaseAuth.currentUser?.uid).set({
+        'username': username,
+        'email': email,
+        'displayPicture': displayPicture,
+        'caseSearch': setSearchParam(username)
+      });
     } on fireAuth.FirebaseAuthException catch (e) {
       print(e);
     } catch (e) {
@@ -61,7 +71,7 @@ class AuthenticationRepository {
 
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     try {
-      fireAuth.UserCredential userCredential = await _firebaseAuth
+      final fireAuth.UserCredential userCredential = await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
     } on Exception {
       throw LoginWithEmailandPasswordFailure();
@@ -78,7 +88,22 @@ class AuthenticationRepository {
               accessToken: googleAuth?.accessToken,
               idToken: googleAuth?.idToken);
 
-      await _firebaseAuth.signInWithCredential(credentials);
+      final fireAuth.UserCredential user =
+          await _firebaseAuth.signInWithCredential(credentials);
+
+      final DocumentSnapshot<Map<String, dynamic>> docRef = await _fireStore
+          .collection('users')
+          .doc(_firebaseAuth.currentUser?.uid)
+          .get();
+      if (!docRef.exists) {
+        _fireStore.collection('users').doc(_firebaseAuth.currentUser?.uid).set({
+          'id': user.user!.uid,
+          'email': user.user?.email,
+          'username': user.user?.displayName,
+          'displayPicture': user.user?.photoURL,
+          'caseSearch': setSearchParam(user.user?.displayName)
+        });
+      }
     } on Exception {
       throw LoginWithGoogleFailure();
     }
@@ -90,5 +115,15 @@ class AuthenticationRepository {
     } on Exception {
       throw LogoutFailure();
     }
+  }
+
+  List<String> setSearchParam(String? displayName) {
+    final List<String> caseSearchList = [];
+    String temp = "";
+    for (int i = 0; i < displayName!.length; i++) {
+      temp = temp + displayName[i];
+      caseSearchList.add(temp);
+    }
+    return caseSearchList;
   }
 }

@@ -8,7 +8,7 @@ class CardStack extends StatelessWidget {
   final Widget lightCard;
   final Widget darkCard;
 
-  CardStack(
+  const CardStack(
       {required this.pageNumber,
       required this.lightCard,
       required this.darkCard,
@@ -22,13 +22,12 @@ class CardStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var darkCardWidth = MediaQuery.of(context).size.width - 2 * kPaddingL;
-    var darkCardHeight = MediaQuery.of(context).size.height / 3;
+    final darkCardWidth = MediaQuery.of(context).size.width - 2 * kPaddingL;
+    final darkCardHeight = MediaQuery.of(context).size.height / 3;
     return Padding(
       padding: EdgeInsets.only(top: isOddNumber ? 25.0 : 50.0),
       child: Stack(
-        overflow: Overflow.visible,
-        alignment: AlignmentDirectional.center,
+        clipBehavior: Clip.none, alignment: AlignmentDirectional.center,
         children: [
           SlideTransition(
             position: darkCardOffsetAnimation!,

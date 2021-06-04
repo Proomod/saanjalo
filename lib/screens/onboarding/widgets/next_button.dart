@@ -3,7 +3,7 @@ import 'package:saanjalo/constants.dart';
 
 class NextButton extends StatelessWidget {
   final VoidCallback? onpressed;
-  NextButton({this.onpressed});
+  const NextButton({this.onpressed});
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(

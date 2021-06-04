@@ -29,10 +29,18 @@ dependencies:
   equatable: ^2.0.2
   flutter_bloc: ^7.0.0
   provider: ^5.0.0
+  crypto: ^3.0.1
+  flutter_webrtc: ^0.6.4
+
+  sdp_transform: ^0.3.0
+
   authentication_repository:
     path: packages/authentication_repository
   form_models:
     path: packages/form_models
+
+  chat_repository:
+    path: packages/chat_repository
 
   flutter:
     sdk: flutter

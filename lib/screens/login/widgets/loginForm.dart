@@ -12,13 +12,13 @@ import 'package:saanjalo/screens/login/widgets/inputField.dart';
 
 class LoginForm extends StatelessWidget {
   final Animation<double>? animation;
-  LoginForm({this.animation});
+  const LoginForm({this.animation});
 
   @override
   Widget build(BuildContext context) {
-    var height =
+    final height =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
-    var space = height > 650 ? kSpaceM : kSpaceS;
+    final space = height > 650 ? kSpaceM : kSpaceS;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kPaddingL),
@@ -66,7 +66,7 @@ class _GoogleButton extends StatelessWidget {
       child: CustomButton(
         color: kWhite,
         textBox: Text(
-          "Login With Google",
+          'Login With Google',
           style: Theme.of(context).textTheme.subtitle1!.copyWith(
               color: kBlack.withOpacity(0.5), fontWeight: FontWeight.bold),
         ),
@@ -104,7 +104,7 @@ class _LoginButton extends StatelessWidget {
                 textBox: state.status == FormzStatus.submissionInProgress
                     ? CircularProgressIndicator()
                     : Text(
-                        "Login to continue",
+                        'Login to continue',
                         style: Theme.of(context).textTheme.subtitle1!.copyWith(
                             color: kWhite, fontWeight: FontWeight.bold),
                       ),
@@ -135,7 +135,7 @@ class _PasswordField extends StatelessWidget {
           animation: animation!,
           additionalOffset: space,
           child: CustomInputField(
-            errorMessage: state.email.invalid ? "Invalid Password" : null,
+            errorMessage: state.email.invalid ? 'Invalid Password' : null,
             onChanged: (String value) =>
                 context.read<LoginCubit>().updatePassword(value),
             label: 'Password',

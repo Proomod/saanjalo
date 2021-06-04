@@ -1,0 +1,20 @@
+name: chat_repository
+version: 1.0.0
+description: A repository for storage of lots of chat blah blah
+author: bhusalpramod456@gmail.com
+publish_to: none
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  equatable: ^2.0.0
+  cloud_firestore: ^2.2.0
+  authentication_repository:
+    path: ../authentication_repository/
+
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  test: ">=1.15.0 <2.0.0"

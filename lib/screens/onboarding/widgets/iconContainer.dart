@@ -5,7 +5,7 @@ class IconContainer extends StatelessWidget {
   final IconData? icon;
   final double? padding;
 
-  IconContainer({this.icon, this.padding})
+  const IconContainer({this.icon, this.padding})
       : assert(icon != null && padding != null);
   @override
   Widget build(BuildContext context) {

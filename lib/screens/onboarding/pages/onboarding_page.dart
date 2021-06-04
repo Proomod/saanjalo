@@ -9,7 +9,7 @@ class OnBoardingPage extends StatelessWidget {
   final Widget? darkCard;
   final Widget? textColumn;
   final int? number;
-  OnBoardingPage(
+  const OnBoardingPage(
       {this.lightCard,
       this.darkCard,
       this.textColumn,
